@@ -130,8 +130,8 @@ class CopyMe{
     public $id = 1;
     public $propery = 'some value';
     
-    public function __clone( $object ){
-        $object->id = null;
+    public function __clone(){
+        $this->id = null;
     }
 }
 $a = new CopyMe();
