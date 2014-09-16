@@ -126,10 +126,16 @@ class PersonWriter {
     }
 }
 
-$person = new Person();
+class CopyMe{}
+$a = new CopyMe();
+$b = $a;
+var_dump($a); 
+var_dump($b);
+
+/*$person = new Person();
 $person->summary();
 $person->greeting();
-
+*/
 //$writer = new PersonWriter();
 //$writer->summary($person);
 
