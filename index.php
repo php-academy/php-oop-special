@@ -18,7 +18,7 @@ class Reader{
 }
 
 class FileException extends Exception{
-    public function __constructor()
+    public function __construct()
     {
         $this->message = "File does not exists!";
     }
