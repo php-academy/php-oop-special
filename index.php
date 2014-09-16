@@ -53,17 +53,36 @@ class Person {
         //getName
         $methodName = 'get' . ucfirst($property); 
         if( method_exists($this, $methodName ) ){
-            return $this->$method(); 
+            return $this->$methodName(); 
         } else {
-            throw Exception('Property does not exist');
+            throw new Exception('Property does not exist');
         }
     }
     
+    public function __set( $property, $value ) {
+        //getName
+        $methodName = 'set' . ucfirst($property); 
+        if( method_exists($this, $methodName ) ){
+            $this->$methodName($value); 
+        } else {
+            throw new Exception('Property does not exist');
+        }
+    }
+
     public function getName(){
         return $this->_name;
     }
+    
+    public function getAge(){
+        return $this->_age;
+    }
+    
+    public function setAge( $age ){
+        $this->_age = $age; 
+    }
+    
 }
 
 $person = new Person();
-echo $person->name;
-echo $person->age;
+$this->age = 31;
+$this->name = "Super Ivan";
