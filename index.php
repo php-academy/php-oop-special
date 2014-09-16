@@ -45,6 +45,10 @@ catch( Exception $e ){
     echo $e->getMessage();
 }*/
 
+/**
+ * @property string $name
+ * @property integer $age
+ */
 class Person {
     protected $_name = 'Ivan';
     protected $_age = 30;
@@ -59,6 +63,16 @@ class Person {
         }
     }
     
+    public function __isset( $property ){
+        $methodName = 'get' . ucfirst($property); 
+        if( method_exists($this, $methodName ) ){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public function __set( $property, $value ) {
         //getName
         $methodName = 'set' . ucfirst($property); 
@@ -84,5 +98,8 @@ class Person {
 }
 
 $person = new Person();
-$person->age = 31;
-$person->name = "Super Ivan";
+var_dump(isset($this->age));
+var_dump(isset($this->secondName));
+//$person->age = 31;
+//echo $person->age;
+//$person->name = "Super Ivan";
