@@ -98,8 +98,8 @@ class Person {
 }
 
 $person = new Person();
-var_dump(isset($this->age));
-var_dump(isset($this->secondName));
+var_dump(isset($person->age));
+var_dump(isset($person->secondName));
 //$person->age = 31;
 //echo $person->age;
 //$person->name = "Super Ivan";
