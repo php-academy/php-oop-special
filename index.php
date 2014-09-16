@@ -126,9 +126,17 @@ class PersonWriter {
     }
 }
 
-class CopyMe{}
+class CopyMe{
+    public $id = 1;
+    public $propery = 'some value';
+    
+    public function __clone( $object ){
+        $object->id = null;
+    }
+}
 $a = new CopyMe();
-$b = $a;
+$b = clone $a;
+
 var_dump($a); 
 var_dump($b);
 
