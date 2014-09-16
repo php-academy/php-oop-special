@@ -52,6 +52,19 @@ catch( Exception $e ){
 class Person {
     protected $_name = 'Ivan';
     protected $_age = 30;
+    public $writer;
+
+    public function __construct(){
+        $this->writer = new PersonWriter();
+    }
+
+    public function __call($name, $arguments) {
+        if( method_exists($this->writer, $name) ){
+            return $this->writer->$name($this);
+        } else {
+            throw new Exception('Method does not exist!');
+        }
+    }
     
     public function __get( $property ){
         //getName
@@ -71,7 +84,6 @@ class Person {
             return false;
         }
     }
-
 
     public function __set( $property, $value ) {
         //getName
@@ -104,6 +116,24 @@ class Person {
     
 }
 
+class PersonWriter {
+    public function greeting(Person $person){
+        echo "Hello! {$person->name}";
+    }
+    
+    public function summary(Person $person){
+        echo "{$person->name} {$person->age} years";
+    }
+}
+
+$person = new Person();
+$person->summary();
+$person->greeting();
+
+//$writer = new PersonWriter();
+//$writer->summary($person);
+
+/*
 $person = new Person();
 var_dump(isset($person->age));
 unset($person->age);
@@ -111,3 +141,5 @@ var_dump($person->age);
 //$person->age = 31;
 //echo $person->age;
 //$person->name = "Super Ivan";
+ * */
+ 
