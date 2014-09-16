@@ -82,6 +82,13 @@ class Person {
             throw new Exception('Property does not exist');
         }
     }
+    
+    public function __unset( $property ) {
+        $methodName = 'set' . ucfirst($property); 
+        if( method_exists($this, $methodName ) ){
+            $this->$methodName(null); 
+        }
+    }
 
     public function getName(){
         return $this->_name;
@@ -99,7 +106,8 @@ class Person {
 
 $person = new Person();
 var_dump(isset($person->age));
-var_dump(isset($person->secondName));
+unset($person->age);
+var_dump($person->age);
 //$person->age = 31;
 //echo $person->age;
 //$person->name = "Super Ivan";
