@@ -84,5 +84,5 @@ class Person {
 }
 
 $person = new Person();
-$this->age = 31;
-$this->name = "Super Ivan";
+$person->age = 31;
+$person->name = "Super Ivan";
