@@ -6,18 +6,41 @@ class Reader{
         if( file_exists($file) ) {
             $this->_file = $file;
         } else {
-            throw new Exception('File does not exists!');
+            throw new FileException();
         }            
     }
     
     public function read(){
         /*...*/
-        echo $this->_file;
+        //echo $this->_file;
+        throw new Exception('Unknow error!');
+    }
+}
+
+class FileException extends Exception{
+    public function __constructor()
+    {
+        $this->message = "File does not exists!";
     }
 }
 
 try{
     $reader = new Reader('/aksdhjasd/asdhgashd.txt');
-} catch( Exception $e ){
-    die($e->getMessage());
+}
+catch( FileException $e ){
+    echo $e->getMessage();
+}
+catch( Exception $e ){
+    echo $e->getMessage();
+}
+
+try{
+    $reader = new Reader( __DIR__ . '/index.php');
+    $reader->read();
+}
+catch( FileException $e ){
+    echo $e->getMessage();
+}
+catch( Exception $e ){
+    echo $e->getMessage();
 }
