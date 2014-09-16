@@ -23,7 +23,7 @@ class FileException extends Exception{
         $this->message = "File does not exists!";
     }
 }
-
+/*
 try{
     $reader = new Reader('/aksdhjasd/asdhgashd.txt');
 }
@@ -43,4 +43,27 @@ catch( FileException $e ){
 }
 catch( Exception $e ){
     echo $e->getMessage();
+}*/
+
+class Person {
+    protected $_name = 'Ivan';
+    protected $_age = 30;
+    
+    public function __get( $property ){
+        //getName
+        $methodName = 'get' . ucfirst($property); 
+        if( method_exists($this, $methodName ) ){
+            return $this->$method(); 
+        } else {
+            throw Exception('Property does not exist');
+        }
+    }
+    
+    public function getName(){
+        return $this->_name;
+    }
 }
+
+$person = new Person();
+echo $person->name;
+echo $person->age;
