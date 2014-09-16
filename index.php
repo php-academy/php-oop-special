@@ -1,13 +1,23 @@
 <?php
-class Greeting {
-    const NUMBER = 1; 
-    static public $name = 'Ivan';
-    static public function sayHello()
-    {
-        echo "Hello, " . self::$name . "!";
-        //echo self::NUMBER;
+
+class Reader{
+    protected $_file;
+    public function __construct( $file ) {
+        if( file_exists($file) ) {
+            $this->_file = $file;
+        } else {
+            throw new Exception('File does not exists!');
+        }            
+    }
+    
+    public function read(){
+        /*...*/
+        echo $this->_file;
     }
 }
-//echo Greeting::$name;
-//Greeting::sayHello();
-echo Greeting::NUMBER;
+
+try{
+    $reader = new Reader('/aksdhjasd/asdhgashd.txt');
+} catch( Exception $e ){
+    die($e->getMessage());
+}
